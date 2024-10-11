@@ -23,8 +23,8 @@ You can access the live application here: [KoinX Backend](https://koinx-6p4d.onr
    ```json
    {
        price: 40000,
-	     marketCap: 800000000,
-	     "24hChange": 3.4
+       marketCap: 800000000,
+       "24hChange": 3.4
    }
 
 2. **Fetch Price Deviation**
@@ -64,10 +64,10 @@ To run this project locally, follow these steps:
   - `cd Koinx`
 
 - Install the dependencies:
- - `yarn install`
+  - `yarn install`
 
 - Set up your MongoDB connection string in an `.env` file:
- - `MONGO_URI = <your-mongodb-connection-string>`
+  - `MONGO_URI = <your-mongodb-connection-string>`
 
 - Start the application:
   - `yarn start:dev`
