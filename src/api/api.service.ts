@@ -21,7 +21,7 @@ export class ApiService {
 
   // Task 1
 
-  @Cron('*/30 * * * * *')
+  @Cron('0 */2 * * *')
   async fetchAndStoreCryptoData() {
     const coins: CoinTypeEnum[] = [
       CoinTypeEnum.BITCOIN,
