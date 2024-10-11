@@ -30,13 +30,13 @@ export class ApiService {
     ];
 
     for (const coin of coins) {
-    const stats = await this.getStats(coin);
-    if ('error' in stats) {
-      this.logger.error(`Error fetching data for ${coin}: ${stats.error}`);
-      continue; 
+      const stats = await this.getStats(coin);
+      if ('error' in stats) {
+        this.logger.error(`Error fetching data for ${coin}: ${stats.error}`);
+        continue;
+      }
+      await this.saveCryptoData({ ...stats, coin });
     }
-    await this.saveCryptoData({ ...stats, coin });
-  }
   }
 
   async saveCryptoData(data: any) {
@@ -53,7 +53,9 @@ export class ApiService {
 
   // Task 2
 
-  async getStats(coin: CoinTypeEnum): Promise<CoinStatsDto | { error: string }> {
+  async getStats(
+    coin: CoinTypeEnum,
+  ): Promise<CoinStatsDto | { error: string }> {
     try {
       const response = await lastValueFrom(
         this.httpService.get(`https://api.coingecko.com/api/v3/coins/markets`, {
@@ -77,7 +79,9 @@ export class ApiService {
 
   // Task 3
 
-  async calculateStandardDeviation(coin: CoinTypeEnum): Promise<number | { error: string }> {
+  async calculateStandardDeviation(
+    coin: CoinTypeEnum,
+  ): Promise<number | { error: string }> {
     try {
       const records = await this.cryptoDataModel
         .find({ coin })
@@ -90,7 +94,7 @@ export class ApiService {
       }
 
       const prices = records.map((record) => record.price);
-      
+
       const deviation = this.calculateStandardDeviationHelper(prices);
 
       return Number(deviation.toFixed(2));
@@ -106,9 +110,9 @@ export class ApiService {
 
     const mean = values.reduce((sum, value) => sum + value, 0) / n;
     const squaredDifferences = values.map((value) => Math.pow(value - mean, 2));
-    const variance = squaredDifferences.reduce((sum, value) => sum + value, 0) / n;
-    
+    const variance =
+      squaredDifferences.reduce((sum, value) => sum + value, 0) / n;
+
     return Math.sqrt(variance);
   }
 }
-

@@ -8,9 +8,7 @@ dotenv.config();
   imports: [
     ApiModule,
     ScheduleModule.forRoot(),
-    MongooseModule.forRoot(
-      process.env.MONGO_URI as string,
-    ),
+    MongooseModule.forRoot(process.env.MONGO_URI as string),
   ],
   controllers: [],
   providers: [],

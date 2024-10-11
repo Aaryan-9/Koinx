@@ -34,7 +34,7 @@ export class ApiController {
     const deviation = await this.apiService.calculateStandardDeviation(
       coin as CoinTypeEnum,
     );
-    
+
     return { deviation };
   }
 }
