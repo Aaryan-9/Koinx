@@ -22,9 +22,9 @@ You can access the live application here: [KoinX Backend](https://koinx-6p4d.onr
    - **Sample Response:**
    ```json
    {
-       price: 40000,
-       marketCap: 800000000,
-       "24hChange": 3.4
+         price: 40000,
+         marketCap: 800000000,
+         "24hChange": 3.4
    }
 
 2. **Fetch Price Deviation**
